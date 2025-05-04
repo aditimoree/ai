@@ -43,7 +43,7 @@ class NQueens:
         print("\n")
 
 if __name__ == "__main__":
-    N = 8  # You can change this value
+    N = int(input("Enter how many queens to place"))
     solver = NQueens(N)
     if not solver.solve():
         print("No solution exists.")
