@@ -32,22 +32,25 @@ def bfs(graph, start):
                     q.put(neighbor)
     print()
 
-def dfs(graph, start, visited=None):
-    if visited is None:
-        visited = set()
+def dfs(graph, start, stack=None, vis=None):
+    if stack is None:
+        stack = []
+    if vis is None:
+        vis = []
         print("DFS Traversal:", end=" ")
-    
-    visited.add(start)
-    print(start, end=" ")
-    
-    for neighbor in graph[start]:
-        if neighbor not in visited:
-            dfs(graph, neighbor, visited)
-    
-    if start == list(graph.keys())[0]:
-        print()
 
-# Driver code
+    stack.append(start)
+    vis.append(start)
+    print(start, end=" ")
+
+    for node in graph[start]:
+        if node not in vis:
+            dfs(graph, node, stack, vis)
+
+    if len(stack) != 0:
+        stack.pop()
+
+# Driver 
 graph = get_graph()
 start_node = input("Enter the starting node: ")
 
